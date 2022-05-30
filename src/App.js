@@ -1,5 +1,6 @@
 import './App.css';
 import Expenses from './components/Expenses/Expenses';
+import NewExpense from './components/NewExpense/NewExpense';
 
 const App = () => {
   const expenses = [
@@ -24,9 +25,13 @@ const App = () => {
     },
   ];
 
+  const addExpenseHandler = expense => {
+    console.log(expense);
+  };
+
   return (
     <div>
-      <h1>Hello world from React !!!</h1>
+      <NewExpense onAddNewExpense={addExpenseHandler} />
       <Expenses expenses={expenses} />
     </div>
   );
