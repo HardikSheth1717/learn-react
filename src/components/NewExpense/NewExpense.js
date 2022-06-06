@@ -1,7 +1,11 @@
+import { useState } from 'react';
 import ExpenseForm from './ExpenseForm'
 import './NewExpense.css';
 
 const NewExpense = props => {
+    const [addExpense, setAddExpense] = useState(false);
+    let uiElements = null;
+
     const newExpenseHandler = expense => {
         props.onAddNewExpense({
             ...expense,
@@ -9,9 +13,26 @@ const NewExpense = props => {
         });
     };
 
-    return <div className='new-expense'>
-        <ExpenseForm onSubmitNewExpense={newExpenseHandler} />
-    </div>
+    const onAddNewExpenseClickHandler = () => {
+        setAddExpense(true);
+    };
+    
+
+    if (addExpense) {
+        uiElements = <ExpenseForm onSubmitNewExpense={newExpenseHandler} />;
+    } else {
+        uiElements = (
+            <div className='new-expense__middel__button'>
+                <button type='button' onClick={onAddNewExpenseClickHandler}>Add New Expense</button>
+            </div>
+        )
+    }
+
+    return (
+        <div className='new-expense'>
+            {uiElements}
+        </div>
+    );
 };
 
 export default NewExpense;
