@@ -11,6 +11,12 @@ const NewExpense = props => {
             ...expense,
             id: Math.random().toString()
         });
+
+        setAddExpense(false);
+    };
+    
+    const cancelExpenseHandler = isCancel => {
+        setAddExpense(isCancel);
     };
 
     const onAddNewExpenseClickHandler = () => {
@@ -19,7 +25,10 @@ const NewExpense = props => {
     
 
     if (addExpense) {
-        uiElements = <ExpenseForm onSubmitNewExpense={newExpenseHandler} />;
+        uiElements = <ExpenseForm 
+        onSubmitNewExpense={newExpenseHandler}
+        onCancelNewExpense={cancelExpenseHandler}
+        />;
     } else {
         uiElements = (
             <div className='new-expense__middel__button'>
